@@ -1,12 +1,12 @@
 <template>
     <div>
       <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
-  <div class="flex items-center flex-shrink-0 text-white mr-6">
-    <span class="font-semibold text-xl tracking-tight">Noetics</span>
-  </div>
-  <div class="block lg:hidden">
-    <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+     <div class="flex items-center flex-shrink-0 text-white mr-6">
+     <span class="font-semibold text-xl tracking-tight">Noetics</span>
+     </div>
+    <div class="block lg:hidden">
+        <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+         <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
     </button>
   </div>
   <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
@@ -26,34 +26,57 @@
     </div>
   </div>
       </nav>
+
+    
+
+
       <div class="p-6">
-        <h1 class="my-5 text-2xl font-semibold">Register User Data View</h1>
+        <h1 class="my-5 text-2xl font-semibold ">Register User Data View</h1>
         <div class="container">
-          <div>
-          
-            <table id="customers" class="min-w-full divide-y divide-gray-200">
+       
+    <div class="grid grid-cols-4 gap-5">
+        <div>
+          <input type="text" class="px-4 py-2 w-full border border-gray-200 rounded-md" placeholder="Search by name...">
+        </div>
+        <div>
+          <input type="text" class="px-4 py-2 w-full border border-gray-200 rounded-md" placeholder="Search by father's name...">
+        </div>
+        <div>
+          <input type="text" class="px-4 py-2 w-full border border-gray-200 rounded-md" placeholder="Search by mobile...">
+        </div>
+        <div class="flex justify-end items-center">
+          <a href="/create" class="text-white bg-blue-500 rounded-md px-10 py-2 5 text-sm font-medium">Add User</a>
+        </div>
+    </div>
+    <div class="mt-5">
+      <table id="customers" class="min-w-full divide-y divide-gray-200 mt-1">
               <thead>
               <tr>
-                <th class="px-4 py-2.5">Sr.No</th>
-                <th class="px-4 py-2.5">First name</th>
-                <th class="px-4 py-2.5">Last name</th>
-                <th class="px-4 py-2.5">Father's name</th>
-                <th class="px-4 py-2.5">Email</th>
-                <th class="px-4 py-2.5">Mobile</th>
-                <th class="px-4 py-2.5">DOB</th>
-                <th class="px-4 py-2.5">Actions</th>
+                <th class="px-4 py-2.5 uppercase">Sr.No <i class="fa fa-sort" style="font-size:16px"></i></th>
+                <th class="px-4 py-2.5 uppercase">Name <i class="fa fa-sort" style="font-size:16px"></i></th>
+                <th class="px-4 py-2.5 uppercase">Email <i class="fa fa-sort" style="font-size:16px"></i></th>
+                <th class="px-4 py-2.5 uppercase">Mobile <i class="fa fa-sort" style="font-size:16px"></i></th>
+                <th class="px-4 py-2.5 uppercase">Age <i class="fa fa-sort" style="font-size:16px"></i></th>
+                <th class="px-4 py-2.5 uppercase">Address <i class="fa fa-sort" style="font-size:16px"></i></th>
+                <th class="px-4 py-2.5 uppercase">City <i class="fa fa-sort" style="font-size:16px"></i></th>
+                <th class="px-4 py-2.5 uppercase">State <i class="fa fa-sort" style="font-size:16px"></i></th>
+                <th class="px-4 py-2.5 uppercase">Pin <i class="fa fa-sort" style="font-size:16px"></i></th>
+                
+                <th class="px-4 py-2.5 uppercase">Actions <i class="fa fa-sort" style="font-size:16px"></i></th>
                
               </tr>
               </thead>
               <tbody class="divide-y divide-gray-200">
-                <tr v-for="(item, index) in tableData">
+                <tr v-for="(item, index) in tableData" :key="index">
                   <td class="px-4 py-2.5">{{index+1}}</td>
-                  <td class="px-4 py-2.5">{{item.fname}}</td>
-                  <td class="px-4 py-2.5">{{item.lname}}</td>
-                  <td class="px-4 py-2.5">{{item.fathers_name}}</td>
+                  <td class="px-4 py-2.5">{{item.name}}</td>
                   <td class="px-4 py-2.5">{{item.email}}</td>
                   <td class="px-4 py-2.5">{{item.mobile}}</td>
-                  <td class="px-4 py-2.5">{{item.dob}}</td>
+                  <td class="px-4 py-2.5">{{item.age}}</td>
+                  <td class="px-4 py-2.5">{{item.address}}</td>
+                   <td class="px-4 py-2.5">{{item.city}}</td>
+                  <td class="px-4 py-2.5">{{item.state}}</td>
+                   <td class="px-4 py-2.5">{{item.pin}}</td>
                   <td class="px-4 py-2.5">
                       <div style="display: flex; align-items: center;">
                           <div>
@@ -74,10 +97,58 @@
               </tbody>
               
             </table>
-          </div>
-        </div>
-      </div>
+    </div>
+    </div>
+      
+      
+      
   </div>
+      
+      
+      
+</div>
+
+
+
+    <div class="flex">
+    <nav aria-label="Page navigation example">
+    <ul class="flex list-style-none">
+      <li class="page-item disabled">
+        <a class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-500 pointer-events-none focus:shadow-none" href="#" tabindex="-1" aria-disabled="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" />
+        </svg>
+          </a></li>
+      <li class="page-item"><a
+          class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+          href="#">1</a></li>
+      <li class="page-item active"><a
+          class="page-link relative block py-1.5 px-3 border-0 bg-blue-600 outline-none transition-all duration-300 rounded-full text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
+          href="#">2 <span class="visually-hidden"></span></a></li>
+      <li class="page-item"><a
+          class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+          href="#">3</a></li>
+      <li class="page-item"><a
+          class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+          href="#">4</a></li>
+      <li class="page-item"><a
+          class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+          href="#">5</a></li>
+      <li class="page-item"><a
+          class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+          href="#">6</a></li>
+      <li class="page-item"><a
+          class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+          href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z" />
+          </svg>
+          </a></li>
+      
+    </ul>
+  </nav>
+</div>
+
 </template>
 
 <script>
@@ -86,14 +157,14 @@ export default {
   data(){
     return{
       tableData:[
-        {id:1, fname:'Adarsh', lname:'Sharma', fathers_name:'Ashok', email:'superadmin@gmail.com', dob:'December 22, 2002', mobile:'971987546'},
-        {id:2, fname:'Xyz', lname:'Abc', fathers_name:'Ashok', email:'superadmin@gmail.com', dob:'January 22, 2002', mobile:'971987546'},
-        {id:3, fname:'Adarsh', lname:'Sharma', fathers_name:'Ashok', email:'superadmin@gmail.com', dob:'December 22, 2002', mobile:'971987546'},
-        {id:4, fname:'Adarsh', lname:'Sharma', fathers_name:'Ashok', email:'superadmin@gmail.com', dob:'December 22, 2002', mobile:'971987546'},
-        {id:2, fname:'Xyz', lname:'Abc', fathers_name:'Ashok', email:'superadmin@gmail.com', dob:'January 22, 2002', mobile:'971987546'},
-        {id:2, fname:'Xyz', lname:'Abc', fathers_name:'Ashok', email:'superadmin@gmail.com', dob:'January 22, 2002', mobile:'971987546'},
-        {id:2, fname:'Xyz', lname:'Abc', fathers_name:'Ashok', email:'superadmin@gmail.com', dob:'January 22, 2002', mobile:'971987546'},
-      ]
+        {id:1,name:'Adarsh',email:'Sharma@gmail.com',mobile:'7877777545454',age:'23', address:'chhindwara',city:'chhindwara',state:'madhya pradesh',pin:'875645454'},
+        {id:1,name:'Adarsh',email:'Sharma@gmail.com',mobile:'7877777545454',age:'23', address:'chhindwara',city:'chhindwara',state:'madhya pradesh',pin:'875645454'},
+        {id:1,name:'Adarsh',email:'Sharma@gmail.com',mobile:'7877777545454',age:'23', address:'chhindwara',city:'chhindwara',state:'madhya pradesh',pin:'875645454'},
+        {id:1,name:'Adarsh',email:'Sharma@gmail.com',mobile:'7877777545454',age:'23', address:'chhindwara',city:'chhindwara',state:'madhya pradesh',pin:'875645454'},
+        {id:1,name:'Adarsh',email:'Sharma@gmail.com',mobile:'7877777545454',age:'23', address:'chhindwara',city:'chhindwara',state:'madhya pradesh',pin:'875645454'},
+
+       
+       ]
     }
   }
 }

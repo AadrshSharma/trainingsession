@@ -29,9 +29,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
-Route::get('/sample', [\App\Http\Controllers\HomeController::class, 'Sample']);
+Route::get('/create', [\App\Http\Controllers\HomeController::class, 'Sample']);
 Route::get('/insertdata', [\App\Http\Controllers\HomeController::class, 'insertdata']);
 Route::get('/update', [\App\Http\Controllers\HomeController::class, 'updatedata']);
 Route::get('/view', [\App\Http\Controllers\HomeController::class, 'view']);
 Route::get('/nview', [\App\Http\Controllers\HomeController::class, 'newview']);
-
+Route::get('/net', [\App\Http\Controllers\HomeController::class, 'nets']);
+Route::get('/real', [\App\Http\Controllers\HomeController::class, 'real']);
+Route::post('save',[\App\Http\Controllers\SaveController::class,'save_stu']);

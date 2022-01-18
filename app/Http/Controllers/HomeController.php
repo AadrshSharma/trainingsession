@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function Sample()
     {
-        return Inertia::render('Sample');
+        return Inertia::render('create');
     }
     public function insertdata()
     {
@@ -26,5 +26,13 @@ class HomeController extends Controller
     public function newview()
     {
         return Inertia::render('newview');
+    }
+    public function nets()
+    {
+        return Inertia::render('nets');
+    }
+    public function real()
+    {
+        return Inertia::render('userview');
     }
 }

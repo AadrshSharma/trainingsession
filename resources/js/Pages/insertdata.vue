@@ -1,11 +1,11 @@
 <template>
-<div class="main">
+<div  class="main">
     <div class="register">
         <h2>Registration Form</h2>
     <form >
         <div class="register grid grid-cols-2 gap-20">
         <div>
-        <label>First name</label>
+        <label>Last name name</label>
         <input  class="form-control" type="text" placeholder="Enter first name" >
         </div>
         <div>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import NoeticInputs from '../components/NoeticInputs.vue';
 
 </script> 
 
