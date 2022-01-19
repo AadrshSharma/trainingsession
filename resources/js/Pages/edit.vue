@@ -88,12 +88,12 @@
             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
              <!--noetic-single-select label="City" :dropdown="myDropdown2" placeholder="Select your city"></noetic-single-select-->
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-               State
+               City
               </label>
               <div class="relative">
-                <select v-model="state" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                <select v-model="city" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                  <option selected value="">Select One</option>
-                 <option v-for="ele  in optionState" :value="ele.id">{{ele.name}}</option>
+                 <option v-for="ele  in myDropdown" :value="ele.id">{{ele.name}}</option>
               
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -105,12 +105,12 @@
             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
              <!--noetic-single-select label="State" :dropdown="myDropdown" placeholder="Select your state"></noetic-single-select-->
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-               city
+               State
               </label>
               <div class="relative">
-                <select v-model="city" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                <select v-model="state" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                 <option selected value="">Select One</option>
-                 <option v-for="ele  in optionCity" :value="ele.id">{{ele.name}}</option>
+                 <option v-for="ele  in myDropdown2" :value="ele.id">{{ele.name}}</option>
                 
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -143,24 +143,25 @@
     import NoeticInputs from "../components/NoeticInputs";
     import NoeticSingleSelect from "../components/NoeticSingleSelect";
     export default {
-        name: "Create",
+        name: "edit",
         components: {NoeticSingleSelect, NoeticInputs},
+        props:['page'],
         data(){
             return{
                 
-                optionState:[
-                    // {id:1,name:'Madhya pradesh'},
-                    // {id:2,name:'Uttar pradesh'},
-                    // {id:3,name:'Gujrat'},
-                    // {id:4,name:'Punjab'},
-                    // {id:5,name:'Haryana'},
+                myDropdown:[
+                    {id:1,name:'Madhya pradesh'},
+                    {id:2,name:'Uttar pradesh'},
+                    {id:3,name:'Gujrat'},
+                    {id:4,name:'Punjab'},
+                    {id:5,name:'Haryana'},
                 ],
-                 optionCity:[
-                    // {id:1,name:'Mumbai'},
-                    // {id:2,name:'Mumbai'},
-                    // {id:3,name:'Pune'},
-                    // {id:4,name:'Hyderabad'},
-                    // {id:5,name:'Indore'},
+                 myDropdown2:[
+                    {id:1,name:'Mumbai'},
+                    {id:2,name:'Mumbai'},
+                    {id:3,name:'Pune'},
+                    {id:4,name:'Hyderabad'},
+                    {id:5,name:'Indore'},
                 ],
                 name:'',
                 email:'',
@@ -171,25 +172,13 @@
                 city:'',
                 state:'',
                 pincode:'',
+                student_id:''
             }
         },
         methods:{
-          fetchCity(){
-            const payload = {id: this.state}
-            axios.post('/api/city', payload).then(response =>{
-              if(response.status === 200){
-                this.optionCity = response.data.data
-              }
-            })
-          },
           submit(){
-            console.log('check');
-            // console.log(this.name);
-            // console.log(this.email);
-            // console.log(this.mobile);
-            // console.log(this.age);
-            
             const payload ={
+              id: this.student_id,
               name: this.name,
               email: this.email,
               mobile: this.mobile,
@@ -201,7 +190,7 @@
               pincode:this.pincode
 
             }
-            axios.post('/api/student/create', payload).then(response =>{
+            axios.post('/api/student/update', payload).then(response =>{
               if(response.status === 200){
                 this.$inertia.get('/view');
               }
@@ -209,16 +198,17 @@
           }
         },
         created(){
-          axios.get('/api/state').then(response =>{
-              if(response.status === 200){
-                this.optionState = response.data.data
-              }
-            })
-        },
-        watch:{
-          'state':{
-            handler: 'fetchCity'
-          }
+            // console.log(this.page)
+            this.student_id = this.page.id
+            this.name = this.page.name
+            this.mobile = this.page.mobile
+            this.age = this.page.age
+            this.email = this.page.email
+            this.password = this.page.password
+            this.address = this.page.address
+            this.city = this.page.city
+            this.state = this.page.state
+            this.pincode = this.page.pincode
         }
     }
 </script>

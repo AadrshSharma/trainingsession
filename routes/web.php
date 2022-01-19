@@ -30,6 +30,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 Route::get('/create', [\App\Http\Controllers\HomeController::class, 'Sample']);
+Route::get('/edit/{id}', [\App\Http\Controllers\HomeController::class, 'edit']);
 Route::get('/insertdata', [\App\Http\Controllers\HomeController::class, 'insertdata']);
 Route::get('/update', [\App\Http\Controllers\HomeController::class, 'updatedata']);
 Route::get('/view', [\App\Http\Controllers\HomeController::class, 'view']);
